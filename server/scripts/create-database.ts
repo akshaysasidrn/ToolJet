@@ -2,7 +2,7 @@ import * as path from 'path';
 import * as dotenv from 'dotenv';
 import * as fs from 'fs';
 import { exec } from 'child_process';
-import { buildAndValidateDatabaseConfig } from './migration-utils';
+import { buildAndValidateDatabaseConfig } from './database-config-utils';
 
 function createDatabaseFromFile(envPath: string): void {
   const result = dotenv.config({ path: envPath });
