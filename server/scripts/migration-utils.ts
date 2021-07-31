@@ -29,11 +29,11 @@ function buildDatabaseConfig(): any {
 function validateDatabaseConfig(dbOptions: any): Joi.ValidationResult {
   const envVarsSchema = Joi.object()
     .keys({
-      PG_HOST: Joi.string().required(),
+      PG_HOST: Joi.string().default('localhost'),
       PG_PORT: Joi.number().positive().default(5432),
       PG_PASS: Joi.string().default(''),
       PG_USER: Joi.string().required(),
-      PG_DB: Joi.string().required(),
+      PG_DB: Joi.string().default('tooljet_db'),
     })
     .unknown();
 
