@@ -1,8 +1,37 @@
 spec:
-  name: sample-rails
+  name: tooljet
   services:
-  - environment_slug: ruby-on-rails
+  - name: tooljet
     git:
-      branch: main
-      repo_clone_url: https://github.com/digitalocean/sample-rails.git
-    name: sample-rails
+      branch: chore/one-click-digitalocean-deploy
+      repo_clone_url: https://github.com/akshaysasidrn/ToolJet.git
+    envs:
+    - key: NODE_ENV
+      value: "production"
+    - key: NODE_OPTIONS
+      value: "--max-old-space-size=4096"
+    - key: LOCKBOX_MASTER_KEY
+      type: SECRET
+    - key: SECRET_KEY_BASE
+      type: SECRET
+    - key: DISABLE_SIGNUPS
+      value: "false"
+      scope: RUN_TIME
+    - key: DISABLE_MULTI_WORKSPACE
+      value: "false"
+      scope: RUN_TIME
+    - key: DEPLOYMENT_PLATFORM
+      value: "digitalocean"
+    - key: DATABASE_URL
+      scope: RUN_TIME
+      value: ${pg-db.DATABASE_URL}
+    - key: TOOLJET_HOST
+      scope: RUN_TIME
+      value: ${APP_URL}
+    - key: TOOLJET_SERVER_URL
+      scope: RUN_TIME
+      value: ${APP_URL}
+  databases:
+    - name: pg-db
+      engine: PG
+      production: false
