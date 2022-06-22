@@ -2,6 +2,9 @@ spec:
   name: tooljet
   services:
   - name: tooljet
+    git:
+      branch: chore/one-click-digitalocean-deploy
+      repo_clone_url: https://github.com/akshaysasidrn/ToolJet.git
     image:
       registry_type: DOCKER_HUB
       registry: tooljet
