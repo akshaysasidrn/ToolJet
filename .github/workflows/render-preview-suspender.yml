@@ -1,7 +1,6 @@
 name: Suspend stale deploys
-on:
-  schedule:
-    - cron: "1 * * * *"
+on: push
+
 jobs:
   stale:
     runs-on: ubuntu-latest
