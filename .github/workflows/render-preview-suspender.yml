@@ -6,8 +6,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: akshaysasidrn/stale-label-fetch@v1.1
+      id: stale-label
       with:
-        id: stale-label
         github-token: ${{ secrets.GITHUB_TOKEN }}
         stale-label: 'active-review-app'
         stale-time: '1'
