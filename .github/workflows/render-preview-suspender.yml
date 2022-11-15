@@ -5,7 +5,7 @@ jobs:
   stale:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/stale-label-fetch@v1.0
+    - uses: akshaysasidrn/stale-label-fetch@v1.0
       with:
         id: stale-label
         github-token: ${{ secrets.GITHUB_TOKEN }}
