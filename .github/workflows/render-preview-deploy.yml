@@ -138,7 +138,7 @@ jobs:
         with:
           script: |
             try {
-              github.rest.issues.removeLabel({
+              await github.rest.issues.removeLabel({
                 issue_number: context.issue.number,
                 owner: context.repo.owner,
                 repo: context.repo.repo,
@@ -148,7 +148,7 @@ jobs:
               console.log(e)
             }
 
-            github.rest.issues.addLabels({
+            await github.rest.issues.addLabels({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -177,7 +177,7 @@ jobs:
         with:
           script: |
             try {
-              github.rest.issues.removeLabel({
+              await github.rest.issues.removeLabel({
                 issue_number: context.issue.number,
                 owner: context.repo.owner,
                 repo: context.repo.repo,
@@ -188,7 +188,7 @@ jobs:
             }
 
             try {
-              github.rest.issues.removeLabel({
+              await github.rest.issues.removeLabel({
                 issue_number: context.issue.number,
                 owner: context.repo.owner,
                 repo: context.repo.repo,
@@ -199,7 +199,7 @@ jobs:
             }
 
             try {
-              github.rest.issues.removeLabel({
+              await github.rest.issues.removeLabel({
                 issue_number: context.issue.number,
                 owner: context.repo.owner,
                 repo: context.repo.repo,
@@ -231,7 +231,7 @@ jobs:
         with:
           script: |
             try {
-              github.rest.issues.removeLabel({
+              await github.rest.issues.removeLabel({
                 issue_number: context.issue.number,
                 owner: context.repo.owner,
                 repo: context.repo.repo,
@@ -258,12 +258,15 @@ jobs:
       #     --url https://api.render.com/v1/services/$SERVICE_ID/resume \
       #     --header 'accept: application/json' \
       #     --header 'authorization: Bearer ${{ secrets.RENDER_API_KEY }}'
-
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+          run: |
+            echo "$GITHUB_CONTEXT"
       - uses: actions/github-script@v6
         with:
           script: |
-            console.log(JSON.stringify(${{ github.event }}))
-            github.rest.issues.addLabels({
+            await github.rest.issues.addLabels({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -271,7 +274,7 @@ jobs:
             })
 
             try {
-              github.rest.issues.removeLabel({
+              await github.rest.issues.removeLabel({
                 issue_number: context.issue.number,
                 owner: context.repo.owner,
                 repo: context.repo.repo,
