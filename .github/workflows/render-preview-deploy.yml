@@ -240,7 +240,7 @@ jobs:
       #     --header 'authorization: Bearer ${{ secrets.RENDER_API_KEY }}'
       - name: Print GitHub event action
         run: |
-          echo "${{ github.event}}"
+          echo "${{ github.event.name }}"
 
       - uses: actions/github-script@v6
         with:
