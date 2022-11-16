@@ -137,12 +137,16 @@ jobs:
       - uses: actions/github-script@v6
         with:
           script: |
-            github.rest.issues.removeLabel({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              name: 'create-review-app'
-            })
+            try {
+              github.rest.issues.removeLabel({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                name: 'create-review-app'
+              })
+            } catch (e) {
+              console.log(e)
+            }
 
             github.rest.issues.addLabels({
               issue_number: context.issue.number,
@@ -172,26 +176,38 @@ jobs:
       - uses: actions/github-script@v6
         with:
           script: |
-            github.rest.issues.removeLabel({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              name: 'destroy-review-app'
-            })
+            try {
+              github.rest.issues.removeLabel({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                name: 'destroy-review-app'
+              })
+            } catch (e) {
+              console.log(e)
+            }
 
-            github.rest.issues.removeLabel({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              name: 'suspend-review-app'
-            })
+            try {
+              github.rest.issues.removeLabel({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                name: 'suspend-review-app'
+              })
+            } catch (e) {
+              console.log(e)
+            }
 
-            github.rest.issues.removeLabel({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              name: 'active-review-app'
-            })
+            try {
+              github.rest.issues.removeLabel({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                name: 'active-review-app'
+              })
+            } catch (e) {
+              console.log(e)
+            }
 
   suspend-review-app:
     if: ${{ github.event.label.name == 'suspend-review-app' && github.event.action == 'labeled' }}
@@ -214,12 +230,16 @@ jobs:
       - uses: actions/github-script@v6
         with:
           script: |
-            github.rest.issues.removeLabel({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              name: 'active-review-app'
-            })
+            try {
+              github.rest.issues.removeLabel({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                name: 'active-review-app'
+              })
+            } catch (e) {
+              console.log(e)
+            }
 
   resume-review-app:
     if: ${{ github.event.action == 'unlabeled' }}
@@ -250,9 +270,13 @@ jobs:
               labels: ['active-review-app']
             })
 
-            github.rest.issues.removeLabel({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              name: 'suspend-review-app'
-            })
+            try {
+              github.rest.issues.removeLabel({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                name: 'suspend-review-app'
+              })
+            } catch (e) {
+              console.log(e)
+            }
