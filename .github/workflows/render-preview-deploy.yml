@@ -11,15 +11,6 @@ permissions:
   issues: write
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: |
-          echo "$GITHUB_CONTEXT"
-
   create-review-app:
     if: ${{ github.event.action == 'labeled' && github.event.label.name == 'create-review-app' }}
     runs-on: ubuntu-latest
