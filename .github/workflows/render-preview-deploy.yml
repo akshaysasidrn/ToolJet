@@ -242,7 +242,7 @@ jobs:
       - uses: actions/github-script@v6
         with:
           script: |
-            console.log(JSON.stringify(${{ github.event }})
+            console.log(JSON.stringify(${{ github.event }}))
             github.rest.issues.addLabels({
               issue_number: context.issue.number,
               owner: context.repo.owner,
